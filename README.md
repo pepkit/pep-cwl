@@ -52,7 +52,7 @@ looper run
 
 ### Switch back-end computing infrastructure with divvy
 
-Use [divvy](http://divvy.databio.org) to customize available computing one, then use it on all your workflows. 
+Use [divvy](http://divvy.databio.org) to customize available computing once, then use it on all your workflows. 
 
 ```
 looper run --compute slurm
