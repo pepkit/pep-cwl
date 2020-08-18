@@ -5,4 +5,4 @@ sample_modifiers:
     pipeline_interfaces: cwl_interface.yaml
 
 looper:
-  output_dir: hello_looper_results
+  output_dir: pipeline_results

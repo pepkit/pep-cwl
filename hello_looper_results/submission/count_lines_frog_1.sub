@@ -1,8 +1,0 @@
-#!/bin/bash
-
-echo 'Compute node:' `hostname`
-echo 'Start time:' `date +'%Y-%m-%d %T'`
-
-{
-cwl-runner /home/nsheff/code/incubator/learn_cwl/cwl-pep/wc-tool.cwl hello_looper_results/submission/frog_1.yaml 
-} | tee hello_looper_results/submission/count_lines_frog_1.log

@@ -1,11 +1,11 @@
 # pep-cwl
 
-This repository explores how to run a PEP-formatted samples through a CWL pipeline.
+This repository explores how to run PEP-formatted samples through a CWL pipeline.
 
 
-## CWL direct
+## CWL tool description
 
-Here is a [CWL tool description](wc-tool.cwl) that just runs `wc` to count the lines in an input file. You can invoke it on a [simple job](wc-job.yml) like this:
+Here is a [CWL tool description](wc-tool.cwl) that runs `wc` to count lines in an input file. Invoke it on a [simple job](wc-job.yml) like this:
 
 ```
 cwl-runner wc-tool.cwl wc-job.yml
@@ -15,13 +15,15 @@ cwl-runner wc-tool.cwl wc-job.yml
 
 Looper uses a [pipeline interface](cwl_interface.yaml) to describe how to run `cwl-runner`. We have a PEP that is made up of a [config file](project_config.yaml) that points to a [sample table](file_list.csv), which points to two input files in the [data](/data) subdirectory.
 
-Looper will scatter the CWL tool across these samples like this:
+Invoke `looper run`, passing the project configuration life, like this:
 
 ```
 looper run project_config.yaml
 ```
 
-Now you can use the looper interface, which provides lots of nice features. For example:
+This will run the `cwl-runner wc-tool.cwl ...` command on *each row in the sample table*. Looper is thus a *tabular scatterer* -- it will take tabular input data, with each row corresponding to one job. You can use it to scatter a workflow across samples.
+
+Once you have this working, you can use the looper CLI for lots of other nice features for job management. For example:
 
 ### Initialize the repository for easier CLI access
 
