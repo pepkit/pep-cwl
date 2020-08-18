@@ -1,0 +1,5 @@
+pipeline_name: count_lines
+pipeline_type: sample
+path: wc-tool.cwl  # relative to this pipeline_interface.yaml file
+command_template: >
+  cwl-runner {pipeline.path} {sample.yaml_file}
