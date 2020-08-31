@@ -1,5 +1,10 @@
 pipeline_name: count_lines
 pipeline_type: sample
-path: wc-tool.cwl  # relative to this pipeline_interface.yaml file
+input_schema: input_schema.yaml
+paths:
+  main: wc-tool.cwl  # relative to this pipeline_interface.yaml file
+pre_submit:
+  python_function:
+  - looper.write_cwl_yaml
 command_template: >
-  cwl-runner {pipeline.path} {sample.yaml_file}
+  cwl-runner {pipeline.paths.main} {sample.cwl_yaml}
