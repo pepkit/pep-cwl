@@ -13,9 +13,9 @@ cwl-runner wc-tool.cwl wc-job.yml
 
 ## PEP-formatted sample metadata
 
-We have a PEP (see [pep.databio.org](http://pep.databio.org) for formal spec) that is made up of a [config file](project_config.yaml) that points to a [sample table](file_list.csv), which includes two samples, each with an input file in the [data](/data) subdirectory.
+Our sample data is stored in a [sample table](file_list.csv) with two samples, each with an input file in the [data](/data) subdirectory. This sample table along with the [config file](project_config.yaml) together make up a standard PEP (see [pep.databio.org](http://pep.databio.org) for formal spec).
 
-We'd like to run our CWL workflow/tool on each of these samples, which means running it once per row in the sample table. We can accomplish this with [looper](http://looper.databio.org), which is an arbitrary command runner for PEP-formatted sample data.
+We'd like to run our CWL workflow/tool on each of these samples, which means running it once per row in the sample table. We can accomplish this with [looper](http://looper.databio.org), which is an arbitrary command runner for PEP-formatted sample data. From a CWL perspective, looper is a *tabular scatterer* -- it will scatter a CWL workflow across each row in a sample table independently.
 
 ## Using looper
 
