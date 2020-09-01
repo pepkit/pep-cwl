@@ -5,6 +5,6 @@ paths:
   main: wc-tool.cwl  # relative to this pipeline_interface.yaml file
 pre_submit:
   python_function:
-  - looper.write_cwl_yaml
+  - looper.write_sample_yaml_cwl
 command_template: >
-  cwl-runner {pipeline.paths.main} {sample.cwl_yaml}
+  cwl-runner {pipeline.paths.main} {sample.sample_yaml_cwl}
