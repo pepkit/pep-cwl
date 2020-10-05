@@ -87,3 +87,14 @@ looper run --sel-attr sample_name --sel-excl frog_1
 ```
 looper run --compute slurm --lumpn 2
 ```
+
+
+## Bioinformatics demo
+
+This demo will run a basic bowtie2 alignment.
+
+Running example:
+
+```
+PATH="$PATH:$HOME/apps/bowtie2-2.4.1-linux-x86_64" looper run bioinformatics_demo/pep_bio.yaml
+```
