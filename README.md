@@ -1,9 +1,10 @@
 # pep-cwl
 
-This repository explores how to run PEP-formatted samples through a CWL pipeline.
+This repository explores how to run PEP-formatted samples through a CWL pipeline. There are two examples: the [simple demo](/simple_demo), which just runs `wc` on a few text files as input, and a [bioinformatics_demo](/bioinformatics_demo), which runs a basic `bowtie2` alignment on some sequencing reads.
 
+## Simple demo
 
-## CWL tool description
+### CWL tool description
 
 Here is a [CWL tool description](wc-tool.cwl) that runs `wc` to count lines in an input file. Invoke it on a [simple job](wc-job.yml) like this:
 
@@ -11,13 +12,13 @@ Here is a [CWL tool description](wc-tool.cwl) that runs `wc` to count lines in a
 cwl-runner wc-tool.cwl wc-job.yml
 ```
 
-## PEP-formatted sample metadata
+### PEP-formatted sample metadata
 
 Our sample data is stored in a [sample table](file_list.csv) with two samples, each with an input file in the [data](/data) subdirectory. This sample table along with the [config file](project_config.yaml) together make up a standard PEP (see [pep.databio.org](http://pep.databio.org) for formal spec).
 
 We'd like to run our CWL workflow/tool on each of these samples, which means running it once per row in the sample table. We can accomplish this with [looper](http://looper.databio.org), which is an arbitrary command runner for PEP-formatted sample data. From a CWL perspective, looper is a *tabular scatterer* -- it will scatter a CWL workflow across each row in a sample table independently.
 
-## Using looper
+### Using looper
 
 Looper uses a [pipeline interface](cwl_interface.yaml) to describe how to run `cwl-runner`. In this interface we've simply specified a `command_template:`, which looks like the above CWL command: `cwl-runner {pipeline.path} {sample.yaml_file}`. This command template uses two variables to construct the command: the `{pipeline.path}` refers to `wc-tool.cwl`, pointed to in the `path` attribute in the pipeline interface file. Looper also automatically creates a `yaml` file representing each sample, and the path is accessed with `{sample.yaml_file}`.
 
@@ -33,9 +34,21 @@ This will run the `cwl-runner wc-tool.cwl ...` command on *each row in the sampl
 
 - looper provides a CLI with lots of other nice features for job management, outlined below:
 
-## Some looper features
+## Bioinformatics demo
 
-### Initialize the repository for easier CLI access
+This demo will run a basic bowtie2 alignment.
+
+Running example:
+
+```
+PATH="$PATH:$HOME/apps/bowtie2-2.4.1-linux-x86_64" looper run bioinformatics_demo/pep_bio.yaml
+```
+
+
+
+### Other looper features
+
+#### Initialize the repository for easier CLI access
 
 ```
 looper init project_config.yaml
@@ -89,12 +102,4 @@ looper run --compute slurm --lumpn 2
 ```
 
 
-## Bioinformatics demo
 
-This demo will run a basic bowtie2 alignment.
-
-Running example:
-
-```
-PATH="$PATH:$HOME/apps/bowtie2-2.4.1-linux-x86_64" looper run bioinformatics_demo/pep_bio.yaml
-```
