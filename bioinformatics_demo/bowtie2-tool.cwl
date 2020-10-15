@@ -67,7 +67,7 @@ inputs:
       position: 2
       prefix: "-x"
       valueFrom: $(self.path.replace(/\.fa/i,""))
-  indices_folder:
+  reference_index_prefix:
     type: Directory?
     default:
       class: Directory

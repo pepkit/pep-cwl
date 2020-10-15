@@ -22,6 +22,9 @@ properties:
         read2:
           type: string
           description: "Fastq file for read 2 (for paired-end experiments)"
+        reference_index_prefix:
+          type: string
+          description: Path to Bowtie2 index
       required:
         - sample_name
         - protocol
@@ -32,5 +35,7 @@ properties:
       files:
         - read1
         - read2
+      directories:
+        - reference_index_prefix
 required:
   - samples
