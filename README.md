@@ -6,7 +6,7 @@ This repository explores how to run PEP-formatted samples through a CWL pipeline
 
 ### CWL tool description
 
-Here is a [CWL tool description](wc-tool.cwl) that runs `wc` to count lines in an input file. Invoke it on a [simple job](wc-job.yml) like this:
+Here is a [CWL tool description](simple_demo/wc-tool.cwl) that runs `wc` to count lines in an input file. Invoke it on a [simple job](wc-job.yml) like this:
 
 ```
 cwl-runner wc-tool.cwl wc-job.yml
@@ -14,7 +14,7 @@ cwl-runner wc-tool.cwl wc-job.yml
 
 ### PEP-formatted sample metadata
 
-Our sample data is stored in a [sample table](file_list.csv) with two samples, each with an input file in the [data](/data) subdirectory. This sample table along with the [config file](project_config.yaml) together make up a standard PEP (see [pep.databio.org](http://pep.databio.org) for formal spec).
+Our sample data is stored in a [sample table](simple_demo/file_list.csv) with two samples, each with an input file in the [data](/data) subdirectory. This sample table along with the [config file](project_config.yaml) together make up a standard PEP (see [pep.databio.org](http://pep.databio.org) for formal spec).
 
 We'd like to run our CWL workflow/tool on each of these samples, which means running it once per row in the sample table. We can accomplish this with [looper](http://looper.databio.org), which is an arbitrary command runner for PEP-formatted sample data. From a CWL perspective, looper is a *tabular scatterer* -- it will scatter a CWL workflow across each row in a sample table independently.
 
