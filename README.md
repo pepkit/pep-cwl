@@ -6,7 +6,7 @@ This repository explores how to run PEP-formatted samples through a CWL pipeline
 
 ### CWL tool description
 
-Here is a [CWL tool description](wc-tool.cwl) that runs `wc` to count lines in an input file. Invoke it on a [simple job](wc-job.yml) like this:
+Here is a [CWL tool description](simple_demo/wc-tool.cwl) that runs `wc` to count lines in an input file. Invoke it on a [simple job](simple_demo/wc-job.yml) like this:
 
 ```
 cwl-runner wc-tool.cwl wc-job.yml
@@ -14,13 +14,13 @@ cwl-runner wc-tool.cwl wc-job.yml
 
 ### PEP-formatted sample metadata
 
-Our sample data is stored in a [sample table](file_list.csv) with two samples, each with an input file in the [data](/data) subdirectory. This sample table along with the [config file](project_config.yaml) together make up a standard PEP (see [pep.databio.org](http://pep.databio.org) for formal spec).
+Our sample data is stored in a [sample table](simple_demo/file_list.csv) with two samples, each with an input file in the [data](simple_demo/data) subdirectory. This sample table along with the [config file](simple_demo/project_config.yaml) together make up a standard PEP (see [pep.databio.org](http://pep.databio.org) for formal spec).
 
 We'd like to run our CWL workflow/tool on each of these samples, which means running it once per row in the sample table. We can accomplish this with [looper](http://looper.databio.org), which is an arbitrary command runner for PEP-formatted sample data. From a CWL perspective, looper is a *tabular scatterer* -- it will scatter a CWL workflow across each row in a sample table independently.
 
 ### Using looper
 
-Looper uses a [pipeline interface](cwl_interface.yaml) to describe how to run `cwl-runner`. In this interface we've simply specified a `command_template:`, which looks like the above CWL command: `cwl-runner {pipeline.path} {sample.yaml_file}`. This command template uses two variables to construct the command: the `{pipeline.path}` refers to `wc-tool.cwl`, pointed to in the `path` attribute in the pipeline interface file. Looper also automatically creates a `yaml` file representing each sample, and the path is accessed with `{sample.yaml_file}`.
+Looper uses a [pipeline interface](simple_demo/cwl_interface.yaml) to describe how to run `cwl-runner`. In this interface we've simply specified a `command_template:`, which looks like the above CWL command: `cwl-runner {pipeline.path} {sample.yaml_file}`. This command template uses two variables to construct the command: the `{pipeline.path}` refers to `wc-tool.cwl`, pointed to in the `path` attribute in the pipeline interface file. Looper also automatically creates a `yaml` file representing each sample, and the path is accessed with `{sample.yaml_file}`.
 
 To run these commands, invoke `looper run`, passing the project configuration file, like this:
 
