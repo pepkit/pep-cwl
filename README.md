@@ -8,7 +8,7 @@ A standardized format for reading and writing sample tables is [PEP](http://pep.
 
 ### CWL tool description
 
-Here is a [CWL tool description](simple_demo/wc-tool.cwl) that runs `wc` to count lines in an input file. Invoke it on a [simple job](simple_demo/wc-job.yml) like this:
+Here is a [CWL tool description](simple_demo/wc-tool.cwl) that runs `wc` to count lines in an input file. Invoke it on a [simple job](simple_demo/wc-tool.yml) like this:
 
 ```
 cwl-runner wc-tool.cwl wc-job.yml
