@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+{
+cwl-runner /home/nsheff/code/incubator/learn_cwl/cwl-pep/bioinformatics_demo/bwa-tool.cwl pipeline_results/submission/sample2_sample_cwl.yaml 
+} | tee pipeline_results/submission/bwa_alignment_sample2.log

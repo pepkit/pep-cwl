@@ -1,0 +1,10 @@
+{
+    "reads_stdout": {
+        "location": "file:///home/nsheff/code/incubator/learn_cwl/cwl-pep/unsorted_reads.sam",
+        "basename": "unsorted_reads.sam",
+        "class": "File",
+        "checksum": "sha1$ff2034ede68fc9d34544a3682ee99095bd90b99d",
+        "size": 564904,
+        "path": "/home/nsheff/code/incubator/learn_cwl/cwl-pep/unsorted_reads.sam"
+    }
+}

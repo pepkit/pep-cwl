@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+cwl-runner /home/nsheff/code/incubator/learn_cwl/cwl-pep/bioinformatics_demo/bowtie2-tool.cwl pipeline_results/submission/sample1_sample_cwl.yaml  | tee pipeline_results/submission/bowtie2_alignment_sample1.log

@@ -1,0 +1,17 @@
+sample_name: sample1
+protocol: RNA-seq
+organism: human
+read1: data/sample1_1.fq.gz
+read2: data/sample1_2.fq.gz
+Index:
+  class: File
+  path: ../../../../../refgenie_sandbox/alias/t7/bwa_index/default/t7.fa
+pipeline_interfaces: bwa_cwl_interface.yaml
+InputFile1:
+  class: File
+  path: ../../data/sample1_1.fq.gz
+InputFile2:
+  class: File
+  path: ../../data/sample1_2.fq.gz
+genome: t7
+sample_yaml_cwl: pipeline_results/submission/sample1_sample_cwl.yaml

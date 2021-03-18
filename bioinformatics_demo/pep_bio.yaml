@@ -2,14 +2,17 @@ pep_version: 2.0.0
 sample_table: demo_sample_table.csv
 sample_modifiers:
   append:
-    reference_index_prefix: RG1
-    pipeline_interfaces: bt2_cwl_interface.yaml
+    Index: RG1
+    pipeline_interfaces: bwa_cwl_interface.yaml
+  duplicate:
+    read1: InputFile1
+    read2: InputFile2
   derive:
-    attributes: [read1, read2, reference_index_prefix]
+    attributes: [read1, read2, Index, InputFile1, InputFile2]
     sources:
-      FQ1: "bioinformatics_demo/data/{sample_name}_1.fq.gz"
-      FQ2: "bioinformatics_demo/data/{sample_name}_2.fq.gz"
-      RG1: "refgenie://{genome}/bowtie2_index.dir"
+      FQ1: "data/{sample_name}_1.fq.gz"
+      FQ2: "data/{sample_name}_2.fq.gz"
+      RG1: "refgenie://{genome}/bwa_index"
   imply:
     - if: 
         organism: ["human", "Homo sapiens", "Human", "Homo_sapiens"]

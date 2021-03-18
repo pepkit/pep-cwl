@@ -1,0 +1,12 @@
+sample_name: sample2
+protocol: bowtie2
+organism: human
+read1:
+  class: File
+  path: ../../bioinformatics_demo/data/sample2_1.fq.gz
+read2:
+  class: File
+  path: ../../bioinformatics_demo/data/sample2_2.fq.gz
+pipeline_interfaces: bt2_cwl_interface.yaml
+genome: hg38
+sample_yaml_cwl: pipeline_results/submission/sample2_cwl.yaml

@@ -1,0 +1,7 @@
+sample_name: frog_1
+library: anySampleType
+file:
+  class: File
+  path: ../../data/frog1_data.txt
+pipeline_interfaces: cwl_interface.yaml
+sample_yaml_cwl: pipeline_results/submission/frog_1_sample_cwl.yaml

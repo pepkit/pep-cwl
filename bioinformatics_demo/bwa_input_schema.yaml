@@ -16,26 +16,25 @@ properties:
         genome:
           type: string
           description: "Refgenie genome registry identifier"
-        read1:
+        InputFile1:
           type: string
           description: "Fastq file for read 1"
-        read2:
+        InputFile2:
           type: string
           description: "Fastq file for read 2 (for paired-end experiments)"
-        reference_index_prefix:
+        Index:
           type: string
-          description: Path to Bowtie2 index
+          description: Path to bwa index file folder
       required:
         - sample_name
         - protocol
-        - read1
+        - InputFile1
         - genome
       required_files:
-        - read1
+        - InputFile1
       files:
-        - read1
-        - read2
-      directories:
-        - reference_index_prefix
+        - InputFile1
+        - InputFile2
+        - Index
 required:
   - samples
