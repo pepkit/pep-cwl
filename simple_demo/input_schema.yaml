@@ -1,6 +1,6 @@
-description: A PEP for nascent RNA samples for the PEPPRO pipeline.
+description: A schema describing a PEP with samples that have input files.
 imports:
- - http://schema.databio.org/pep/2.0.0.yaml
+ - https://schema.databio.org/pep/2.0.0.yaml
 properties:
   samples:
     type: array

@@ -11,6 +11,9 @@ requirements:
       - $(inputs.reference_index)
       - $(inputs.read1)
       - $(inputs.read2)
+      - entryname: script.sh
+        entry: |-
+          ls $(inputs.reference_index_prefix)*
 
 baseCommand: [bowtie2]
 inputs:
@@ -53,6 +56,9 @@ inputs:
     default: "test.bam"
     doc: |
       File for SAM output (default: stdout)
+  reference_index_prefix:
+    type:
+    - string
   reference_index:
     doc: path to the FM-index files for the chosen reference genome
     type: File?
@@ -67,23 +73,16 @@ inputs:
       position: 2
       prefix: "-x"
       valueFrom: $(self.path.replace(/\.fa/i,""))
-  indices_folder:
+  reference_index_folder:
     type: Directory?
-    default:
-      class: Directory
-      path: /home/nsheff/code/refgenie_sandbox/hg38/bowtie2_index/default
     doc: "Folder with indices files"
     inputBinding:
       position: 81
       prefix: '-x'
-      valueFrom: |
-        ${
-            for (var i = 0; i < self.listing.length; i++) {
-                if (self.listing[i].path.split('.').slice(-3).join('.') == 'rev.1.bt2' ||
-                    self.listing[i].path.split('.').slice(-3).join('.') == 'rev.1.bt2l'){
-                  return self.listing[i].path.split('.').slice(0,-3).join('.');
-                }
-            }
-            return null;
-        }
+      valueFrom: $(inputs.reference_index_prefix)
 outputs: []
+
+arguments:
+  - valueFrom: $(inputs.reference_index_prefix.replace(/[^/]*$/,""))
+    position: 90
+    prefix: "-x"
