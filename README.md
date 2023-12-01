@@ -1,3 +1,5 @@
+### Note: This repository has been archived and consolidated into: https://github.com/pepkit/pep-pipelines/
+
 # pep-cwl
 
 This repository explores how to run PEP-formatted samples through a CWL pipeline. There are two examples: the [simple demo](/simple_demo), which just runs `wc` on a few text files as input, and a [bioinformatics_demo](/bioinformatics_demo), which runs a basic `bowtie2` alignment on some sequencing reads.
